@@ -13,3 +13,5 @@ Running the sketch will output various LED patterns that indicate the IO signal 
 4. Increment pins from 0 until all port pins are ON/OFF
 5. Moving 6 bits, two for each of the 3 output ports
 6. Alternate the level for neighporing pins ON/OFF
+
+[![Watch the video](xiao-pmod1-24iodemo.png)](https://www.youtube.com/watch?v=qveKCJ2Uwl0)
