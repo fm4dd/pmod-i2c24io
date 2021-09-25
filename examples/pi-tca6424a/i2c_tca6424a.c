@@ -19,6 +19,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <math.h>
+#include <time.h>
+#include <errno.h>    
 #include <gpiod.h>
 #include "tca6424a.h"
 
@@ -243,4 +245,39 @@ void tca6424a_setpins(char *pindata) {
 }
 
 void tca6424a_setout(char *pindata) {
+}
+
+
+/* ------------------------------------------------------- */
+/* writePort() writes a data byte to output port 0,1,2     */
+/* ------------------------------------------------------- */
+void writePort(char port, char data) {
+   char out_data[2];
+   if(port == 0) out_data[0] = OUTPUT_PORT0_NOAI_ADDR; // P0 output reg
+   if(port == 1) out_data[0] = OUTPUT_PORT1_NOAI_ADDR; // P1 output reg
+   if(port == 2) out_data[0] = OUTPUT_PORT2_NOAI_ADDR; // P2 output reg
+   out_data[1] = data;
+
+   if(write(i2cfd, out_data, 2) != 2) {
+      printf("Error: I2C write failure for register 0x%02X\n", out_data[0]);
+      exit(-1);
+   }
+}
+
+/* ------------------------------------------------------- */
+/* delay() Sleep for the requested number of milliseconds. */
+/* ------------------------------------------------------- */
+int delay(long msec) {
+   struct timespec ts;
+   int res;
+
+   if (msec < 0) { errno = EINVAL; return -1; }
+
+   ts.tv_sec = msec / 1000;
+   ts.tv_nsec = (msec % 1000) * 1000000;
+
+   do { res = nanosleep(&ts, &ts); }
+   while (res && errno == EINTR);
+
+   return res;
 }

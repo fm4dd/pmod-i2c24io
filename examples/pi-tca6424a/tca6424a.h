@@ -78,3 +78,5 @@ extern void tca6424a_allout();                 // all ports and pins as output
 extern void tca6424a_setall();                 // set all port pins output=0/1
 extern void tca6424a_setout(char *pindata);    // set individual pins as output
 extern void tca6424a_setpins(char *pindata);   // set individual pins 0/1
+extern void writePort(char port, char data);   // write a byte to output port 1,2 or 3
+extern int delay(long msec);                   // create a Arduino-style delay
