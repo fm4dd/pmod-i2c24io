@@ -1,4 +1,6 @@
- ## I2C24IO PMOD
+## I2C24IO PMOD
+
+![xiao-test](https://github.com/fm4dd/pmod-i2c24io/actions/workflows/xiao.yml/badge.svg) ![rpi-test](https://github.com/fm4dd/pmod-i2c24io/actions/workflows/rpi.yml/badge.svg)
 
 ### Description
 
