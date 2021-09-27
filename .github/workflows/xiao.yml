@@ -1,0 +1,33 @@
+name: xiao-test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test-matrix:
+    strategy:
+      matrix:
+        arduino-platform: ["Seeeduino:samd"]
+        include:
+          - arduino-platform: "Seeeduino:samd"
+            fqbn: "Seeeduino:samd:seeed_XIAO_m0"
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1.1.1
+      - name: Install platform
+        run: |
+          arduino-cli core update-index --additional-urls https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
+          arduino-cli core install ${{ matrix.arduino-platform }} --additional-urls https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
+      - name: Compile Sketch
+        run: |
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} ./examples/xiao-pmod1-i2c24io
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} ./examples/xiao-pmod1-24iodemo
+
