@@ -1,14 +1,20 @@
-## I2C24IO PMOD
+## PMOD-I2C24IO
 
 ![xiao-test](https://github.com/fm4dd/pmod-i2c24io/actions/workflows/xiao.yml/badge.svg) ![rpi-test](https://github.com/fm4dd/pmod-i2c24io/actions/workflows/rpi.yml/badge.svg)
 
+
 ### Description
 
-<img src="images/t6-v10/i2c24io-top.jpg" width="240px">
+<img src="images/t6-v10/i2c24io-top.png" width="240px">
 
-This project is a 24-bit digital IO expander module, using the Texas Instruments TCA6424A circuit utilizing I2C. The design is available with a Type-6 or Type-6A compatible I2C PMOD compatible connector interface per open PMOD interface standard v1.3.1 by Digilent Inc. PMOD (peripheral module interface) standardizes connectivity with FPGA or microcontroller development boards.
+This project is a 24-bit digital IO expander module, using the Texas Instruments TCA6424A circuit utilizing I2C. The design is available with two connector types: either Type-6 (I2C single-row) or Type-6A (I2C extended double-row) compatible interface per open PMOD interface standard v1.3.1 by Digilent Inc. PMOD (peripheral module interface) standardizes connectivity with FPGA or microcontroller development boards.
+This design is registered under the OSHWA Open Source Hardware Self-Certification:  
+<a href="https://certification.oshwa.org/jp000012.html"><img src="images/oshw-reg-jp000012.svg" style="width:100px; vertical-align: middle"></a>
 
-In this module, 24 IO pins are controlled through the serial I2C protocol. For each individual IO pin, a corresponding LED displays its current status with negative logic. A pins logic level '0' lights up the LED, while level '1' turns it off. To fit all IO pins on a reasonably small PMOD, 0402-size SMD components have been selected. DIP switches enable I2C pull-up resistors if needed, and change the I2C address between 0x22 and 0x23. Two modules can be chained for a total of 48 IO signals. Three Testpoints can be fitted for I2C bus troubleshooting.
+### Function
+In this module, 24 IO pins are controlled through the two-wire serial I2C protocol. For each individual IO pin, a corresponding LED displays its current status with negative logic. A pins logic level '0' lights up the LED, while level '1' turns it off. To fit all IO pins on a reasonably small PMOD, 0402-size SMD components have been selected. DIP switches enable I2C pull-up resistors if needed, and change the I2C bus address between 0x22 and 0x23. Two modules can be chained for a total of 48 IO signals. Three Testpoints can be fitted for I2C bus troubleshooting.  
+
+
 
 See also http://fpga.fm4dd.com/
 
@@ -86,8 +92,10 @@ Note: From I2C24IO module hardware version 1.1, two additional 10K pull-up resis
 |Arduino      |[xiao-pmod1-i2c24io](examples/xiao-pmod1-i2c24io)   | Tests I2C ports 0x22 and 0x23. If a module is found, all IO pins are set as 'output=0' (lighting up all LED) |
 |Arduino      |[xiao-pmod1-24iodemo](examples/xiao-pmod1-24iodemo)   | Creates a lightshow demo by rotating binary patterns over the 24 IO pins, lighting up connected LEDs |
 
-I2C24IO PMOD connected to the RPi PMOD Interface board connector PMOD1, running the "xiao-pmod1-i2c24io" example program on the Seeeduino XIAO (Cortex M0):
+Two I2C24IO PMOD's connected to the RPi PMOD Interface board connector PMOD1 and PMOD2, running the "xiao-double-i2c24io" example program on the Seeeduino XIAO (Cortex M0):
 
-<img src=images/t6-v10/pmod2rpi-xiao-i2c24io-pmod-v10.jpg width="640px">
+<img src=images/t6-v10/pmod2rpi-xiao-i2c24io-double-v10.png width="640px">
 
+I2C24IO PMOD connected to the RPi PMOD Interface board connector PMOD4, running the "demotca6424a" example program on the Raspberry Pi:
 
+<img src=images/t6-v10/pmod2rpi-pmod-i2c24io-v10.png width="640px">
