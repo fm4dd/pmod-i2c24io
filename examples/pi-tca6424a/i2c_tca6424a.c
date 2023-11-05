@@ -25,6 +25,12 @@
 #include "tca6424a.h"
 
 /* ------------------------------------------------------------ *
+ * Global variables                                             *
+ * ------------------------------------------------------------ */
+struct gpiod_chip *chip;     // gpiod chip object for GPIO control
+int i2cfd;                   // I2C file descriptor
+
+/* ------------------------------------------------------------ *
  * set_resetpin() - set the reset pin as output with signal = 1 *
  * ------------------------------------------------------------ */
 void set_resetpin() {

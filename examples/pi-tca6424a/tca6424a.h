@@ -63,9 +63,9 @@
 /* ------------------------------------------------------------ *
  * global variables                                             *
  * ------------------------------------------------------------ */
-int i2cfd;               // I2C file descriptor
-int verbose;             // debug flag, 0 = normal, 1 = debug mode
-struct gpiod_chip *chip; // gpiod chip object for GPIO control
+extern int i2cfd;               // I2C file descriptor
+extern int verbose;             // debug flag, 0 = normal, 1 = debug mode
+extern struct gpiod_chip *chip; // gpiod chip object for GPIO control
 
 /* ------------------------------------------------------------ *
  * external function prototypes for I2C bus communication       *
